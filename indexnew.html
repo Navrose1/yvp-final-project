@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Voice Party (YVP) | Pan-India Student Movement</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navyBg: '#071A2B',
+                        navyCard: '#0D2942',
+                        navyCardHover: '#13385B',
+                        electricBlue: '#00B8FF',
+                        electricHover: '#0095CC',
+                        textPrimary: '#FFFFFF',
+                        textSecondary: '#B8C7D9',
+                        accentGlow: 'rgba(0, 184, 255, 0.15)'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Live Election Results -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF for Generating Digital ID and Event Passes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        body {
+            background-color: #071A2B;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #071A2B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0D2942;
+            border-radius: 4px;
+            border: 1px solid #00B8FF;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00B8FF;
+        }
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(13, 41, 66, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 184, 255, 0.2);
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(0, 184, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        .glow-border:hover {
+            box-shadow: 0 0 25px rgba(0, 184, 255, 0.35);
+            border-color: #00B8FF;
+        }
+        /* Modal Overlay Animation */
+        .modal-fade {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-navyBg text-textPrimary antialiased selection:bg-electricBlue selection:text-navyBg">
+
+    <!-- HEADER & NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-electricBlue/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-electricBlue/10 border border-electricBlue flex items-center justify-center text-electricBlue group-hover:bg-electricBlue group-hover:text-navyBg transition-all duration-300 shadow-[0_0_15px_rgba(0,184,255,0.3)]">
+                        <i class="fa-solid fa-bullhorn text-2xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-2xl tracking-wide text-white">YVP</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-electricBlue/20 text-electricBlue font-semibold border border-electricBlue/30">INDIA</span>
+                        </div>
+                        <p class="text-xs text-textSecondary tracking-wider uppercase font-medium">Pan-India Student Movement</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#home" class="hover:text-electricBlue transition-colors py-1">Home</a>
+                    <a href="#about" class="hover:text-electricBlue transition-colors py-1">About</a>
+                    <a href="#pillars" class="hover:text-electricBlue transition-colors py-1">12 Pillars</a>
+                    <a href="#leaders" class="hover:text-electricBlue transition-colors py-1">Leaders</a>
+                    <a href="#elections" class="hover:text-electricBlue transition-colors py-1 text-electricBlue font-semibold flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Elections
+                    </a>
+                    <a href="#news" class="hover:text-electricBlue transition-colors py-1">News & Media</a>
+                    <a href="#support" class="hover:text-electricBlue transition-colors py-1">Support Hub</a>
+                    <a href="#gallery" class="hover:text-electricBlue transition-colors py-1">Gallery</a>
+                </nav>
+
+                <!-- Action Button & Mobile Toggle -->
+                <div class="flex items-center space-x-3">
+                    <a href="https://wa.me/919876543210?text=Hello%20YVP,%20I%20want%20to%20know%20more%20about%20the%20student%20movement." target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-semibold bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] text-sm">
+                        <i class="fa-brands fa-whatsapp mr-2 text-base"></i> WhatsApp
+                    </a>
+                    <a href="#join" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold bg-electricBlue text-navyBg hover:bg-electricHover transition-all shadow-[0_0_20px_rgba(0,184,255,0.4)]">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Join Movement
+                    </a>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-lg bg-navyCard text-electricBlue border border-electricBlue/30 hover:bg-electricBlue hover:text-navyBg transition-colors" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden xl:hidden bg-navyCard/95 border-b border-electricBlue/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-house w-6 text-electricBlue"></i> Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-address-card w-6 text-electricBlue"></i> About YVP</a>
+            <a href="#pillars" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-list-check w-6 text-electricBlue"></i> 12 Pillars</a>
+            <a href="#leaders" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-user-shield w-6 text-electricBlue"></i> Leadership</a>
+            <a href="#elections" onclick="toggleMobileMenu()" class="block py-2 text-electricBlue font-semibold border-b border-white/5"><i class="fa-solid fa-check-to-slot w-6 text-red-400"></i> Online Elections</a>
+            <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-newspaper w-6 text-electricBlue"></i> News & TV</a>
+            <a href="#support" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-headset w-6 text-electricBlue"></i> Support Hub</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-textPrimary hover:text-electricBlue font-medium border-b border-white/5"><i class="fa-solid fa-images w-6 text-electricBlue"></i> Gallery</a>
+            <div class="flex gap-2 pt-2">
+                <a href="https://wa.me/919876543210?text=Hello%20YVP,%20I%20want%20to%20join." target="_blank" class="flex-1 py-2.5 text-center rounded-xl font-bold bg-emerald-600 text-white text-sm"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
+                <a href="#join" onclick="toggleMobileMenu()" class="flex-1 py-2.5 text-center rounded-xl font-bold bg-electricBlue text-navyBg text-sm"><i class="fa-solid fa-user-plus mr-1"></i> Join YVP</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-28 lg:pt-36 pb-20 min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Overlay Image with Dark Blue Gradient -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1920&auto=format&fit=crop" alt="Students Union India" class="w-full h-full object-cover opacity-20 filter brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-navyBg/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-navyBg via-transparent to-navyBg"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-electricBlue/10 border border-electricBlue/40 text-electricBlue mb-6 animate-pulse">
+                <i class="fa-solid fa-flag text-xs"></i>
+                <span class="text-xs sm:text-sm font-semibold tracking-wide uppercase">Unified National Voice For Indian Students</span>
+            </div>
+
+            <!-- Big Banner Headline with Party Picture -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10">
+                <div class="lg:col-span-7 text-left">
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                        <span class="block">Students First.</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue via-cyan-300 to-white">Future Forward.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-textSecondary font-light leading-relaxed mb-8">
+                        A youth-driven, non-partisan national movement empowering students across all universities, colleges, and technical institutes throughout <strong class="text-white font-medium">India</strong>. Founded in <strong class="text-electricBlue">2024</strong> to reform education, protect student rights, and build actionable leaders.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                        <a href="#join" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-electricBlue text-navyBg hover:bg-electricHover transition-all transform hover:-translate-y-1 shadow-[0_0_25px_rgba(0,184,255,0.4)] flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-id-card text-lg"></i> Become a Member
+                        </a>
+                        <a href="https://wa.me/919876543210?text=Hello%20YVP,%20I%20have%20an%20inquiry%20regarding%20the%20movement." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-500 transition-all transform hover:-translate-y-1 shadow-[0_0_25px_rgba(16,185,129,0.3)] flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md rounded-2xl overflow-hidden border-2 border-electricBlue/40 glow-border group shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop" alt="Youth Voice Party Movement Assembly" class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-left">
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-electricBlue text-navyBg font-bold mb-2 inline-block">YVP National Front</span>
+                            <h4 class="text-white font-bold text-lg">United for Academic Excellence & Equal Rights</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Realistic Modern Stats Grid (Founded 2024) -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left">
+                <div class="bg-navyCard/90 border border-electricBlue/20 p-5 rounded-2xl glow-border">
+                    <div class="text-electricBlue text-2xl font-bold mb-1 flex items-center justify-between">
+                        <span class="counter" data-target="4850">0</span>+
+                        <i class="fa-solid fa-users text-electricBlue/30 text-xl"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">Active Student Members</div>
+                    <div class="text-xs text-textSecondary">Verified students across India</div>
+                </div>
+                
+                <div class="bg-navyCard/90 border border-electricBlue/20 p-5 rounded-2xl glow-border">
+                    <div class="text-electricBlue text-2xl font-bold mb-1 flex items-center justify-between">
+                        <span class="counter" data-target="35">0</span>
+                        <i class="fa-solid fa-university text-electricBlue/30 text-xl"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">College Chapters</div>
+                    <div class="text-xs text-textSecondary">Across Indian Universities</div>
+                </div>
+
+                <div class="bg-navyCard/90 border border-electricBlue/20 p-5 rounded-2xl glow-border">
+                    <div class="text-electricBlue text-2xl font-bold mb-1 flex items-center justify-between">
+                        <span class="counter" data-target="18">0</span>
+                        <i class="fa-solid fa-bullseye text-electricBlue/30 text-xl"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">Youth Initiatives</div>
+                    <div class="text-xs text-textSecondary">Completed since 2024 launch</div>
+                </div>
+
+                <div class="bg-navyCard/90 border border-electricBlue/20 p-5 rounded-2xl glow-border">
+                    <div class="text-electricBlue text-2xl font-bold mb-1 flex items-center justify-between">
+                        <span class="counter" data-target="420">0</span>+
+                        <i class="fa-solid fa-circle-check text-electricBlue/30 text-xl"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">Grievances Solved</div>
+                    <div class="text-xs text-textSecondary">Hostel, fees & exam support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT YVP & TIMELINE SECTION -->
+    <section id="about" class="py-20 bg-navyBg relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-electricBlue uppercase tracking-widest mb-2">Who We Are</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Building India's Most Transparent Student Organization</h3>
+                <p class="mt-4 text-textSecondary leading-relaxed">
+                    Youth Voice Party (YVP) was established in early 2024 to provide an honest, tech-driven platform for college and university students across India to express concerns, propose reforms, and actively shape campus governance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-navyCard p-8 rounded-2xl border border-electricBlue/20 glow-border">
+                    <div class="w-12 h-12 rounded-xl bg-electricBlue/10 text-electricBlue flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Our Vision 🌟</h4>
+                    <p class="text-textSecondary text-sm leading-relaxed">
+                        🎯 An Indian higher education ecosystem where every student enjoys affordable education, 🏫 state-of-the-art hostel infrastructure, 🧠 mental well-being support, and 🗳️️ transparent student union elections.
+                    </p>
+                </div>
+
+                <div class="bg-navyCard p-8 rounded-2xl border border-electricBlue/20 glow-border">
+                    <div class="w-12 h-12 rounded-xl bg-electricBlue/10 text-electricBlue flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Our Mission 🚀</h4>
+                    <p class="text-textSecondary text-sm leading-relaxed">
+                        🤝 To unify student voices from Central, State, and Private universities into a constructive national dialogue, ensuring immediate resolution of ground-level student grievances.
+                    </p>
+                </div>
+
+                <div class="bg-navyCard p-8 rounded-2xl border border-electricBlue/20 glow-border">
+                    <div class="w-12 h-12 rounded-xl bg-electricBlue/10 text-electricBlue flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Core Values 🛡️</h4>
+                    <p class="text-textSecondary text-sm leading-relaxed">
+                        ✨ Uncompromising Integrity, 💻 Digital Accountability, ⚖️ Equal Gender Representation, 🎓 Merit-based Scholarship Advocacy, and 🌐 Direct Democracy.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Realistic Timeline Post-2024 -->
+            <div class="bg-navyCard/60 border border-electricBlue/20 rounded-3xl p-6 sm:p-10">
+                <h4 class="text-2xl font-bold text-white text-center mb-10">YVP Growth Timeline (2024 – Present)</h4>
+                <div class="relative border-l-2 border-electricBlue/30 ml-4 sm:ml-32 space-y-10">
+                    
+                    <!-- 2024 -->
+                    <div class="relative pl-8 sm:pl-10">
+                        <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-navyBg border-2 border-electricBlue flex items-center justify-center text-electricBlue text-xs font-bold">
+                            24
+                        </div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 sm:text-right text-electricBlue font-bold text-sm mb-1 sm:mb-0">
+                            Jan - Dec 2024
+                        </div>
+                        <h5 class="text-lg font-bold text-white">Foundation</h5>
+                        <p class="text-textSecondary text-sm mt-1">
+                            YVP launched across 5 hubs. Formulated the 12 pillars.
+                        </p>
+                    </div>
+
+                    <!-- 2025 -->
+                    <div class="relative pl-8 sm:pl-10">
+                        <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-navyBg border-2 border-electricBlue flex items-center justify-center text-electricBlue text-xs font-bold">
+                            25
+                        </div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 sm:text-right text-electricBlue font-bold text-sm mb-1 sm:mb-0">
+                            Year 2025
+                        </div>
+                        <h5 class="text-lg font-bold text-white">35 Chapters</h5>
+                        <p class="text-textSecondary text-sm mt-1">
+                            Expanded to 35 institutions with grievance desks.
+                        </p>
+                    </div>
+
+                    <!-- 2026 -->
+                    <div class="relative pl-8 sm:pl-10">
+                        <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-electricBlue text-navyBg flex items-center justify-center text-xs font-bold">
+                            26
+                        </div>
+                        <div class="sm:absolute sm:-left-32 sm:top-1 sm:text-right text-electricBlue font-bold text-sm mb-1 sm:mb-0">
+                            Current (2026)
+                        </div>
+                        <h5 class="text-lg font-bold text-white">Digital Voting</h5>
+                        <p class="text-textSecondary text-sm mt-1">
+                            Deploying online student voting & portals across India.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12 PILLARS OF MANIFESTO WITH SUGGESTIONS -->
+    <section id="pillars" class="py-20 bg-navyBg relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-electricBlue uppercase tracking-widest mb-2">Our Manifesto</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">12 Pillars for Student Welfare</h3>
+                <p class="mt-4 text-textSecondary">
+                    Click on any pillar to submit your valuable suggestion or grievance for improving campus policies across Indian universities.
+                </p>
+            </div>
+
+            <!-- Grid of 12 Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pillarsGrid">
+                <!-- Javascript dynamic or inline cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTI-RAGGING SECTION -->
+    <section id="antiragging" class="py-20 bg-navyCard/40 relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-red-950/40 via-navyCard to-navyCard border-2 border-red-500/40 rounded-3xl p-8 sm:p-12 relative overflow-hidden glow-border">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-red-500 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-shield-cat"></i>
+                </div>
+                <div class="max-w-3xl relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold mb-4 border border-red-500/30">
+                        <i class="fa-solid fa-triangle-exclamation"></i> ZERO TOLERANCE POLICY
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white mb-4">Anti-Ragging & Campus Safety Cell</h3>
+                    <p class="text-textSecondary text-sm sm:text-base leading-relaxed mb-6">
+                        YVP maintains an absolute zero-tolerance stance against ragging, harassment, and bullying in any college or university across India. Our 24/7 emergency helpline ensures immediate legal and administrative intervention to protect every student's dignity and safety.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="tel:18001805522" class="px-6 py-3 rounded-xl font-bold bg-red-600 text-white hover:bg-red-700 transition-all flex items-center gap-2 shadow-lg shadow-red-600/30">
+                            <i class="fa-solid fa-phone-volume"></i> 24/7 Helpline: 1800-180-5522
+                        </a>
+                        <button onclick="openAntiRaggingModal()" class="px-6 py-3 rounded-xl font-bold bg-navyBg text-white border border-red-500/50 hover:bg-red-950/50 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-user-shield text-red-400"></i> Report Incident Securely
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP CORNER -->
+    <section id="leaders" class="py-20 bg-navyBg relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-electricBlue uppercase tracking-widest mb-2">Youth Leaders</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">Driven By Students, For Students</h3>
+                <p class="mt-4 text-textSecondary">
+                    Meet the national office bearers leading YVP campaigns across India.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Leader 1 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop" alt="Aman Sharma" class="w-full h-full object-cover">
+                            <div class="absolute top-3 right-3 bg-navyBg/80 border border-electricBlue/40 text-electricBlue text-xs px-2.5 py-1 rounded-full font-semibold">
+                                National Convener
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white">Aman Sharma</h4>
+                            <p class="text-xs text-electricBlue font-medium mb-3">Postgraduate Scholar, Delhi</p>
+                            <p class="text-textSecondary text-sm mb-4">Pioneered national student rights campaign for affordable hostel mess charges.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-white/5 mt-auto">
+                        <div class="flex flex-col gap-1 text-xs text-textSecondary mb-4">
+                            <span><i class="fa-solid fa-envelope text-electricBlue mr-1"></i> aman.sharma24@yvporg.in</span>
+                            <span><i class="fa-brands fa-instagram text-electricBlue mr-1"></i> @amansharma21</span>
+                        </div>
+                        <button onclick="openLeaderModal('Aman Sharma', 'National Convener', 'aman.sharma24@yvporg.in', '@amansharma21', 'Aman is a passionate advocate for educational accessibility with over 4 years of experience leading student unions in Delhi. He spearheaded the 2024 Pan-India Hostel Quality Campaign.')" class="w-full py-2 bg-electricBlue/10 hover:bg-electricBlue hover:text-navyBg text-electricBlue font-semibold text-xs rounded-xl border border-electricBlue/30 transition-colors">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 2 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Rahul Verma" class="w-full h-full object-cover">
+                            <div class="absolute top-3 right-3 bg-navyBg/80 border border-electricBlue/40 text-electricBlue text-xs px-2.5 py-1 rounded-full font-semibold">
+                                General Secretary
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white">Rahul Verma</h4>
+                            <p class="text-xs text-electricBlue font-medium mb-3">Engineering Scholar, Bengaluru</p>
+                            <p class="text-textSecondary text-sm mb-4">Focuses on technical education reforms, startup incubation, and campus placement rights.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-white/5 mt-auto">
+                        <div class="flex flex-col gap-1 text-xs text-textSecondary mb-4">
+                            <span><i class="fa-solid fa-envelope text-electricBlue mr-1"></i> rahul.verma@yvporg.in</span>
+                            <span><i class="fa-brands fa-instagram text-electricBlue mr-1"></i> @rahulverma_yvp</span>
+                        </div>
+                        <button onclick="openLeaderModal('Rahul Verma', 'General Secretary', 'rahul.verma@yvporg.in', '@rahulverma_yvp', 'Rahul heads YVP Tech & Digital Transformation cell. He developed our verified digital election framework and manages 35 university chapters.')" class="w-full py-2 bg-electricBlue/10 hover:bg-electricBlue hover:text-navyBg text-electricBlue font-semibold text-xs rounded-xl border border-electricBlue/30 transition-colors">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 3 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Priya Singh" class="w-full h-full object-cover">
+                            <div class="absolute top-3 right-3 bg-navyBg/80 border border-electricBlue/40 text-electricBlue text-xs px-2.5 py-1 rounded-full font-semibold">
+                                Women Wing President
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white">Priya Singh</h4>
+                            <p class="text-xs text-electricBlue font-medium mb-3">Law Student, Mumbai</p>
+                            <p class="text-textSecondary text-sm mb-4">Leading safety audits, women empowerment initiatives, and legal aid desks on campus.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-white/5 mt-auto">
+                        <div class="flex flex-col gap-1 text-xs text-textSecondary mb-4">
+                            <span><i class="fa-solid fa-envelope text-electricBlue mr-1"></i> priya.singh@yvporg.in</span>
+                            <span><i class="fa-brands fa-instagram text-electricBlue mr-1"></i> @priyasingh_yvp</span>
+                        </div>
+                        <button onclick="openLeaderModal('Priya Singh', 'Women Wing President', 'priya.singh@yvporg.in', '@priyasingh_yvp', 'Priya is a advocate for women safety policies and nighttime campus accessibility. She has conducted legal literacy workshops for over 1,500 female students.')" class="w-full py-2 bg-electricBlue/10 hover:bg-electricBlue hover:text-navyBg text-electricBlue font-semibold text-xs rounded-xl border border-electricBlue/30 transition-colors">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 4 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col justify-between">
+                    <div>
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop" alt="Vikramaditya Roy" class="w-full h-full object-cover">
+                            <div class="absolute top-3 right-3 bg-navyBg/80 border border-electricBlue/40 text-electricBlue text-xs px-2.5 py-1 rounded-full font-semibold">
+                                National Coordinator
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold text-white">Vikramaditya Roy</h4>
+                            <p class="text-xs text-electricBlue font-medium mb-3">Research Scholar, Kolkata</p>
+                            <p class="text-textSecondary text-sm mb-4">Oversees scholarship disbursement tracking and student mental wellness programs.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 border-t border-white/5 mt-auto">
+                        <div class="flex flex-col gap-1 text-xs text-textSecondary mb-4">
+                            <span><i class="fa-solid fa-envelope text-electricBlue mr-1"></i> vikram.roy@yvporg.in</span>
+                            <span><i class="fa-brands fa-instagram text-electricBlue mr-1"></i> @vikramroy_yvp</span>
+                        </div>
+                        <button onclick="openLeaderModal('Vikramaditya Roy', 'National Coordinator', 'vikram.roy@yvporg.in', '@vikramroy_yvp', 'Vikram coordinates campus operations across Eastern and Northern India, ensuring student grievances are directly presented to university vice-chancellors.')" class="w-full py-2 bg-electricBlue/10 hover:bg-electricBlue hover:text-navyBg text-electricBlue font-semibold text-xs rounded-xl border border-electricBlue/30 transition-colors">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE ONLINE ELECTIONS SECTION -->
+    <section id="elections" class="py-20 bg-navyCard/30 relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold mb-4 border border-red-500/30 animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-red-500"></span> LIVE STUDENT REFERENDUM
+                </div>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">National Student Union Polls 2026</h3>
+                <p class="mt-4 text-textSecondary">
+                    Cast your simulated ballot for priority national student reforms and watch live results update in real-time.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Voting Form Column -->
+                <div class="lg:col-span-6 bg-navyCard border border-electricBlue/20 rounded-3xl p-6 sm:p-8 glow-border">
+                    <h4 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-check-to-slot text-electricBlue"></i> Cast Your Vote
+                    </h4>
+                    <form id="votingForm" onsubmit="handleVote(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-textSecondary mb-2">Select Primary Priority Reform</label>
+                            <select id="voteOption" required class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electricBlue text-sm">
+                                <option value="" disabled selected>Choose priority reform...</option>
+                                <option value="Hostel & Mess Fee Regulation">Hostel & Mess Fee Regulation</option>
+                                <option value="24/7 Library & Lab Access">24/7 Library & Lab Access</option>
+                                <option value="Zero-Cost Placement Training">Zero-Cost Placement Training</option>
+                                <option value="Mental Health Support Cells">Mental Health Support Cells</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-textSecondary mb-2">Student ID or College Email</label>
+                            <input type="text" id="voterId" required placeholder="e.g. STU2026-XYZ" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electricBlue text-sm">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-electricBlue text-navyBg font-bold rounded-xl hover:bg-electricHover transition-all shadow-[0_0_15px_rgba(0,184,255,0.4)]">
+                            Submit Secure Ballot
+                        </button>
+                    </form>
+                    <div id="voteMessage" class="mt-4 text-sm text-center font-medium hidden"></div>
+                </div>
+
+                <!-- Live Results Chart Column -->
+                <div class="lg:col-span-6 bg-navyCard border border-electricBlue/20 rounded-3xl p-6 sm:p-8 glow-border flex flex-col justify-center items-center">
+                    <h4 class="text-xl font-bold text-white mb-6 w-full text-left flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-electricBlue"></i> Live Referendum Results
+                    </h4>
+                    <div class="w-full h-64 sm:h-72 relative flex items-center justify-center">
+                        <canvas id="electionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS & MEDIA CORNER -->
+    <section id="news" class="py-20 bg-navyBg relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-electricBlue uppercase tracking-widest mb-2">Press & Updates</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">YVP in the Headlines</h3>
+                <p class="mt-4 text-textSecondary">
+                    Recent press coverage, national bulletins, and campus campaign highlights.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- News 1 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" alt="Campus Protest Rally" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3 bg-electricBlue text-navyBg text-xs font-bold px-2.5 py-1 rounded">
+                            National Press
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs text-textSecondary mb-2"><i class="fa-regular fa-calendar mr-1"></i> October 2, 2026</div>
+                        <h4 class="text-lg font-bold text-white mb-3">YVP Demands Uniform Hostel Fee Caps Across Central Universities</h4>
+                        <p class="text-textSecondary text-sm mb-6 flex-grow">Over 5,000 students participated in national virtual townhalls protesting unfair mess fee increments.</p>
+                        <button onclick="openNewsModal('YVP Demands Uniform Hostel Fee Caps Across Central Universities', 'October 2, 2026', 'National Press', 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop', 'Youth Voice Party leaders addressed nationwide press conferences today calling for strict regulatory caps on hostel and mess fee hikes across all central and state universities. The movement has submitted comprehensive audit reports to the Ministry of Education.')" class="text-electricBlue text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
+                            Read Full Story <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- News 2 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop" alt="Digital Voting System Launch" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3 bg-electricBlue text-navyBg text-xs font-bold px-2.5 py-1 rounded">
+                            Technology
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs text-textSecondary mb-2"><i class="fa-regular fa-calendar mr-1"></i> September 18, 2026</div>
+                        <h4 class="text-lg font-bold text-white mb-3">YVP Introduces Secure Prototype for Digital Student Union Elections</h4>
+                        <p class="text-textSecondary text-sm mb-6 flex-grow">New open-source voting protocol aims to eliminate administrative tampering in college elections.</p>
+                        <button onclick="openNewsModal('YVP Introduces Secure Prototype for Digital Student Union Elections', 'September 18, 2026', 'Technology', 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop', 'To guarantee complete transparency and eradicate fraudulent voting practices in campus elections, Youth Voice Party tech cell has launched an end-to-end encrypted digital ballot prototype tested across 35 university chapters with phenomenal success.')" class="text-electricBlue text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
+                            Read Full Story <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- News 3 -->
+                <div class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Mental Health Seminar" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3 bg-electricBlue text-navyBg text-xs font-bold px-2.5 py-1 rounded">
+                            Student Welfare
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-xs text-textSecondary mb-2"><i class="fa-regular fa-calendar mr-1"></i> August 30, 2026</div>
+                        <h4 class="text-lg font-bold text-white mb-3">Mental Health Support Desks Established in 35 University Campuses</h4>
+                        <p class="text-textSecondary text-sm mb-6 flex-grow">Free confidential counseling sessions launched for exam stress and career anxiety support.</p>
+                        <button onclick="openNewsModal('Mental Health Support Desks Established in 35 University Campuses', 'August 30, 2026', 'Student Welfare', 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop', 'Addressing the rising academic stress among college students, YVP has successfully partnered with certified counselors to establish peer-support desks and confidential helpline numbers across all affiliated college chapters.')" class="text-electricBlue text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
+                            Read Full Story <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUPPORT HUB & MEMBERSHIP REGISTRATION -->
+    <section id="support" class="py-20 bg-navyCard/40 relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Support Hub Column -->
+                <div class="lg:col-span-6 bg-navyCard border border-electricBlue/20 rounded-3xl p-8 glow-border flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electricBlue/10 text-electricBlue text-xs font-bold mb-4">
+                            <i class="fa-solid fa-headset"></i> STUDENT HELP DESK & CONTACTS
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Get in Touch with YVP National HQ</h3>
+                        <p class="text-textSecondary text-sm mb-6">
+                            Have a campus grievance, inquiry, or want to connect with state coordinators? Reach out to us directly through phone, email, or WhatsApp.
+                        </p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-3 text-sm text-textSecondary">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400"><i class="fa-brands fa-whatsapp text-lg"></i></div>
+                                <div><strong class="text-white block">WhatsApp Helpline</strong> <a href="https://wa.me/919876543210?text=Hello%20YVP" target="_blank" class="text-emerald-400 hover:underline font-semibold">+91 98765 43210</a></div>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-textSecondary">
+                                <div class="w-10 h-10 rounded-lg bg-electricBlue/10 flex items-center justify-center text-electricBlue"><i class="fa-solid fa-phone"></i></div>
+                                <div><strong class="text-white block">National Party Contact</strong> <a href="tel:+911800987654" class="text-electricBlue hover:underline font-semibold">+91 1800-987-654</a></div>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-textSecondary">
+                                <div class="w-10 h-10 rounded-lg bg-electricBlue/10 flex items-center justify-center text-electricBlue"><i class="fa-solid fa-envelope"></i></div>
+                                <div><strong class="text-white block">Email Support</strong> support@yvporg.in</div>
+                            </div>
+                        </div>
+                    </div>
+                    <form onsubmit="handleSupportSubmit(event)" class="space-y-4 pt-4 border-t border-white/5">
+                        <input type="text" required placeholder="Your Name" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-electricBlue">
+                        <input type="email" required placeholder="College Email" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-electricBlue">
+                        <textarea required rows="3" placeholder="Describe your grievance or inquiry..." class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-electricBlue"></textarea>
+                        <button type="submit" class="w-full py-3 bg-electricBlue/20 hover:bg-electricBlue text-electricBlue hover:text-navyBg font-bold text-sm rounded-xl border border-electricBlue/40 transition-all">
+                            Submit Inquiry Ticket
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Membership Registration & ID Card Generator Column -->
+                <div id="join" class="lg:col-span-6 bg-navyCard border border-electricBlue/20 rounded-3xl p-8 glow-border">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electricBlue/10 text-electricBlue text-xs font-bold mb-4">
+                        <i class="fa-solid fa-id-card"></i> DIGITAL MEMBERSHIP CARD
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Join YVP & Generate Your ID</h3>
+                    <p class="text-textSecondary text-sm mb-6">
+                        Register as an official verified student member of Youth Voice Party and instantly download your custom digital ID card with a unique membership number.
+                    </p>
+                    
+                    <form id="membershipForm" onsubmit="generateDigitalID(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Full Name</label>
+                                <input type="text" id="memberName" required placeholder="Navrose Kaur" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">College / University</label>
+                                <input type="text" id="memberCollege" required placeholder="University Name" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">State / Region</label>
+                                <input type="text" id="memberState" required placeholder="e.g. Delhi / Punjab" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Course / Year</label>
+                                <input type="text" id="memberCourse" required placeholder="e.g. B.Tech 3rd Year" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-electricBlue text-navyBg font-bold rounded-xl hover:bg-electricHover transition-all shadow-[0_0_20px_rgba(0,184,255,0.4)] flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> Generate Official YVP Digital ID (PDF)
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-navyBg relative border-t border-electricBlue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold text-electricBlue uppercase tracking-widest mb-2">Visual Moments</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-white">YVP Gallery & Rallies</h3>
+                <p class="mt-4 text-textSecondary">
+                    Glimpses of student conventions, university townhalls, and national welfare campaigns across India.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop" alt="Student Assembly" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">Delhi University</span>
+                        <h4 class="text-white font-bold text-base">Annual Youth Conclave 2026</h4>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop" alt="Campus Debate" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">Bengaluru Chapter</span>
+                        <h4 class="text-white font-bold text-base">Tech Education Summit</h4>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Library Campaign" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">Mumbai University</span>
+                        <h4 class="text-white font-bold text-base">24/7 Library Access Drive</h4>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop" alt="Protest Rally" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">Kolkata Chapter</span>
+                        <h4 class="text-white font-bold text-base">Hostel Fee Regulation March</h4>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop" alt="Digital Voting Demo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">National Headquarters</span>
+                        <h4 class="text-white font-bold text-base">Digital Election Launch</h4>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden border border-electricBlue/20 group h-64 glow-border">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" alt="Student Volunteers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navyBg via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs text-electricBlue font-semibold uppercase">Pan-India Network</span>
+                        <h4 class="text-white font-bold text-base">Volunteer Orientation Camp</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navyBg border-t border-electricBlue/20 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2">
+                    <a href="#home" class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-electricBlue/10 border border-electricBlue flex items-center justify-center text-electricBlue">
+                            <i class="fa-solid fa-bullhorn text-xl"></i>
+                        </div>
+                        <span class="font-bold text-2xl text-white">Youth Voice Party (YVP)</span>
+                    </a>
+                    <p class="text-textSecondary text-sm mb-6 max-w-sm">
+                        A pan-India student movement dedicated to empowering the next generation of leaders, reforming educational infrastructure, and upholding student rights.
+                    </p>
+                    <div class="flex space-x-3 text-electricBlue mb-4">
+                        <a href="https://wa.me/919876543210?text=Hello%20YVP" target="_blank" class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition-colors shadow-md" title="WhatsApp Us"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                        <a href="tel:+911800987654" class="w-10 h-10 rounded-xl bg-navyCard border border-electricBlue/30 flex items-center justify-center hover:bg-electricBlue hover:text-navyBg transition-colors" title="Call Us"><i class="fa-solid fa-phone"></i></a>
+                        <a href="mailto:support@yvporg.in" class="w-10 h-10 rounded-xl bg-navyCard border border-electricBlue/30 flex items-center justify-center hover:bg-electricBlue hover:text-navyBg transition-colors" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                    <div class="text-xs text-textSecondary space-y-1">
+                        <div><strong class="text-white">Call:</strong> +91 1800-987-654</div>
+                        <div><strong class="text-white">WhatsApp:</strong> +91 98765 43210</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-base mb-4">Quick Links</h5>
+                    <ul class="space-y-2.5 text-sm text-textSecondary">
+                        <li><a href="#home" class="hover:text-electricBlue transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-electricBlue transition-colors">About YVP</a></li>
+                        <li><a href="#pillars" class="hover:text-electricBlue transition-colors">12 Pillars</a></li>
+                        <li><a href="#leaders" class="hover:text-electricBlue transition-colors">Leadership</a></li>
+                        <li><a href="#elections" class="hover:text-electricBlue transition-colors">Online Elections</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-base mb-4">Manifesto & Safety</h5>
+                    <ul class="space-y-2.5 text-sm text-textSecondary">
+                        <li><a href="#pillars" class="hover:text-electricBlue transition-colors">Hostel Reforms</a></li>
+                        <li><a href="#pillars" class="hover:text-electricBlue transition-colors">Fee Transparency</a></li>
+                        <li><a href="#antiragging" class="hover:text-electricBlue transition-colors">Anti-Ragging Cell</a></li>
+                        <li><a href="#support" class="hover:text-electricBlue transition-colors">Grievance Portal</a></li>
+                        <li><a href="#news" class="hover:text-electricBlue transition-colors">Press Releases</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-base mb-4">Legal & Contact</h5>
+                    <ul class="space-y-2.5 text-sm text-textSecondary">
+                        <li><a href="https://wa.me/919876543210" target="_blank" class="hover:text-electricBlue transition-colors flex items-center gap-1 text-emerald-400"><i class="fa-brands fa-whatsapp"></i> WhatsApp Support</a></li>
+                        <li><a href="#" class="hover:text-electricBlue transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-electricBlue transition-colors">Terms of Movement</a></li>
+                        <li><a href="#support" class="hover:text-electricBlue transition-colors">Contact National HQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-textSecondary">
+                <p>&copy; 2026 Youth Voice Party (YVP) India. All rights reserved. Registered Student Movement.</p>
+                <p class="mt-4 sm:mt-0">Designed with <i class="fa-solid fa-heart text-red-500"></i> for Indian Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+
+    <!-- Pillar Suggestion Modal -->
+    <div id="pillarModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden modal-fade px-4">
+        <div class="bg-navyCard border border-electricBlue/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative glow-border">
+            <button onclick="closePillarModal()" class="absolute top-5 right-5 text-textSecondary hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <div id="pillarModalIcon" class="w-12 h-12 rounded-xl bg-electricBlue/10 text-electricBlue flex items-center justify-center text-xl mb-4"></div>
+            <h4 id="pillarModalTitle" class="text-2xl font-bold text-white mb-2"></h4>
+            <p id="pillarModalDesc" class="text-textSecondary text-sm mb-6"></p>
+            
+            <form onsubmit="handlePillarSuggestion(event)" class="space-y-4">
+                <input type="hidden" id="modalPillarName">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Your Name & College</label>
+                    <input type="text" required placeholder="e.g. Rahul Sharma, Delhi University" class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Your Suggestion / Grievance for this Pillar</label>
+                    <textarea required rows="4" placeholder="Share your recommendations..." class="w-full bg-navyBg border border-electricBlue/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-electricBlue"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-electricBlue text-navyBg font-bold rounded-xl hover:bg-electricHover transition-all">
+                    Submit Suggestion
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leader Profile Modal -->
+    <div id="leaderModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden modal-fade px-4">
+        <div class="bg-navyCard border border-electricBlue/40 rounded-3xl max-w-md w-full p-6 sm:p-8 relative glow-border text-center">
+            <button onclick="closeLeaderModal()" class="absolute top-5 right-5 text-textSecondary hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-20 h-20 rounded-full bg-electricBlue/10 border-2 border-electricBlue mx-auto flex items-center justify-center text-electricBlue text-3xl mb-4">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h4 id="modalLeaderName" class="text-2xl font-bold text-white"></h4>
+            <p id="modalLeaderRole" class="text-xs text-electricBlue font-semibold uppercase tracking-wider mb-4"></p>
+            <p id="modalLeaderBio" class="text-textSecondary text-sm mb-6 leading-relaxed"></p>
+            <div class="bg-navyBg p-4 rounded-2xl border border-white/5 space-y-2 text-xs text-textSecondary text-left mb-6">
+                <div><i class="fa-solid fa-envelope text-electricBlue mr-2"></i> <span id="modalLeaderEmail"></span></div>
+                <div><i class="fa-brands fa-instagram text-electricBlue mr-2"></i> <span id="modalLeaderInsta"></span></div>
+            </div>
+            <button onclick="closeLeaderModal()" class="w-full py-2.5 bg-electricBlue text-navyBg font-bold rounded-xl hover:bg-electricHover transition-all">
+                Close Profile
+            </button>
+        </div>
+    </div>
+
+    <!-- News Article Modal -->
+    <div id="newsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden modal-fade px-4">
+        <div class="bg-navyCard border border-electricBlue/40 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative glow-border max-h-[90vh] overflow-y-auto">
+            <button onclick="closeNewsModal()" class="absolute top-5 right-5 text-textSecondary hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <span id="modalNewsCategory" class="text-xs px-2.5 py-1 rounded bg-electricBlue text-navyBg font-bold mb-3 inline-block"></span>
+            <h4 id="modalNewsTitle" class="text-2xl font-bold text-white mb-2"></h4>
+            <div id="modalNewsDate" class="text-xs text-textSecondary mb-4"></div>
+            <div class="h-56 rounded-2xl overflow-hidden mb-6 border border-white/10">
+                <img id="modalNewsImg" src="" alt="News Image" class="w-full h-full object-cover">
+            </div>
+            <p id="modalNewsContent" class="text-textSecondary text-sm sm:text-base leading-relaxed mb-6"></p>
+            <button onclick="closeNewsModal()" class="w-full py-3 bg-electricBlue text-navyBg font-bold rounded-xl hover:bg-electricHover transition-all">
+                Close Article
+            </button>
+        </div>
+    </div>
+
+    <!-- Anti-Ragging Report Modal -->
+    <div id="antiRaggingModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden modal-fade px-4">
+        <div class="bg-navyCard border border-red-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative glow-border">
+            <button onclick="closeAntiRaggingModal()" class="absolute top-5 right-5 text-textSecondary hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-12 h-12 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <h4 class="text-2xl font-bold text-white mb-2">Secure Anti-Ragging Report</h4>
+            <p class="text-textSecondary text-sm mb-6">Your report is completely confidential and forwarded directly to the National Anti-Ragging Cell & Legal Task Force.</p>
+            
+            <form onsubmit="handleAntiRaggingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Your Name / Anonymity Option</label>
+                    <input type="text" required placeholder="Full Name or 'Anonymous'" class="w-full bg-navyBg border border-red-500/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">University / College Name & City</label>
+                    <input type="text" required placeholder="e.g. College Name, City" class="w-full bg-navyBg border border-red-500/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-textSecondary mb-1">Incident Details</label>
+                    <textarea required rows="4" placeholder="Provide date, time, and description of the incident..." class="w-full bg-navyBg border border-red-500/30 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-all">
+                    Submit Confidential Report
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        // 12 Pillars Data with visual small pictures
+        const pillarsData = [
+            {
+                title: "1. Affordable Hostel & Mess",
+                desc: "Strict price capping on hostel accommodation and nutritional mess food to ensure zero financial exploitation of students.",
+                icon: "fa-hotel",
+                img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "2. Transparent Fee Structure",
+                desc: "Absolute transparency in tuition fee allocation with mandatory annual student audits of university budgets.",
+                icon: "fa-file-invoice-dollar",
+                img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "3. 24/7 Library & Labs",
+                desc: "Round-the-clock access to digital libraries, high-speed research labs, and study reading rooms on every campus.",
+                icon: "fa-book-open",
+                img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "4. Zero-Cost Placement Cells",
+                desc: "Guaranteed free career placement training, skill workshops, and transparent internship drives for all enrolled students.",
+                icon: "fa-briefcase",
+                img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "5. Mental Health Support",
+                desc: "Certified professional counselors and confidential wellness helpdesks established in every affiliated college.",
+                icon: "fa-brain",
+                img: "https://images.unsplash.com/photo-1573497619953-863dd164103f?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "6. Women Safety & Security",
+                desc: "Well-lit pathways, CCTV surveillance, emergency SOS booths, and active internal complaints committees.",
+                icon: "fa-shield-heart",
+                img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "7. Merit Scholarships",
+                desc: "Streamlined direct-to-bank scholarship disbursements for economically weaker and meritorious students.",
+                icon: "fa-graduation-cap",
+                img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "8. Sports & Cultural Grants",
+                desc: "Ample funding, modern equipment, and dedicated arenas for inter-college sports tournaments and arts festivals.",
+                icon: "fa-trophy",
+                img: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "9. Campus Wi-Fi & Tech",
+                desc: "High-speed campus-wide wireless internet infrastructure to support online learning and digital research.",
+                icon: "fa-wifi",
+                img: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "10. Anti-Ragging Protection",
+                desc: "Zero-tolerance disciplinary committees with 24/7 confidential helpline support to eliminate campus bullying.",
+                icon: "fa-user-shield",
+                img: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "11. Public Transport Subsidy",
+                desc: "Concession passes for metro, buses, and trains for all daily commuting college and university scholars.",
+                icon: "fa-bus",
+                img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "12. Democratic Student Unions",
+                desc: "Regular, transparent student union elections conducted under unbiased election commissions across all campuses.",
+                icon: "fa-check-to-slot",
+                img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=400&auto=format&fit=crop"
+            }
+        ];
+
+        // Render 12 Pillars
+        const pillarsGrid = document.getElementById('pillarsGrid');
+        pillarsGrid.innerHTML = pillarsData.map(p => `
+            <div onclick="openPillarModal('${p.title}', '${p.desc}', '${p.icon}')" class="bg-navyCard rounded-2xl border border-electricBlue/20 overflow-hidden glow-border cursor-pointer flex flex-col justify-between group">
+                <div>
+                    <div class="h-36 overflow-hidden relative">
+                        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navyCard via-transparent to-transparent"></div>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-navyBg/90 border border-electricBlue/40 text-electricBlue flex items-center justify-center text-base shadow-md">
+                            <i class="fa-solid ${p.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-electricBlue transition-colors">${p.title}</h4>
+                        <p class="text-textSecondary text-xs leading-relaxed">${p.desc}</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0">
+                    <span class="text-xs text-electricBlue font-semibold flex items-center gap-1">
+                        Submit Suggestion <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+            </div>
+        `).join('');
+
+        // Modal Functions for Pillars
+        function openPillarModal(title, desc, icon) {
+            document.getElementById('pillarModalTitle').innerText = title;
+            document.getElementById('pillarModalDesc').innerText = desc;
+            document.getElementById('modalPillarName').value = title;
+            document.getElementById('pillarModalIcon').innerHTML = `<i class="fa-solid ${icon}"></i>`;
+            document.getElementById('pillarModal').classList.remove('hidden');
+        }
+        function closePillarModal() {
+            document.getElementById('pillarModal').classList.add('hidden');
+        }
+       async function handlePillarSuggestion(e) {
+    e.preventDefault();
+
+    const form = e.target;
+
+    try {
+        await fetch('http://localhost:3000/api/pillar-suggestions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pillar_name: document.getElementById('modalPillarName').value,
+                user_info: form.elements[1].value,
+                suggestion: form.elements[2].value
+            })
+        });
+    } catch (err) {
+        console.error('Pillar suggestion backend sync error:', err);
+    }
+
+    alert('Thank you! Your suggestion for this manifesto pillar has been securely logged and forwarded to the YVP Policy Committee.');
+    closePillarModal();
+    form.reset();
+}
+
+        // Leader Modal Functions
+        function openLeaderModal(name, role, email, insta, bio) {
+            document.getElementById('modalLeaderName').innerText = name;
+            document.getElementById('modalLeaderRole').innerText = role;
+            document.getElementById('modalLeaderEmail').innerText = email;
+            document.getElementById('modalLeaderInsta').innerText = insta;
+            document.getElementById('modalLeaderBio').innerText = bio;
+            document.getElementById('leaderModal').classList.remove('hidden');
+        }
+        function closeLeaderModal() {
+            document.getElementById('leaderModal').classList.add('hidden');
+        }
+
+        // News Modal Functions
+        function openNewsModal(title, date, category, img, content) {
+            document.getElementById('modalNewsTitle').innerText = title;
+            document.getElementById('modalNewsDate').innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${date}`;
+            document.getElementById('modalNewsCategory').innerText = category;
+            document.getElementById('modalNewsImg').src = img;
+            document.getElementById('modalNewsContent').innerText = content;
+            document.getElementById('newsModal').classList.remove('hidden');
+        }
+        function closeNewsModal() {
+            document.getElementById('newsModal').classList.add('hidden');
+        }
+
+        // Anti-Ragging Modal Functions
+        function openAntiRaggingModal() {
+            document.getElementById('antiRaggingModal').classList.remove('hidden');
+        }
+        function closeAntiRaggingModal() {
+            document.getElementById('antiRaggingModal').classList.add('hidden');
+        }
+       async function handleAntiRaggingSubmit(e) {
+    e.preventDefault();
+
+    const form = e.target;
+
+    try {
+        await fetch('http://localhost:3000/api/anti-ragging', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                reporter_name: form.elements[0].value,
+                college_city: form.elements[1].value,
+                incident_details: form.elements[2].value
+            })
+        });
+    } catch (err) {
+        console.error('Anti-ragging backend sync error:', err);
+    }
+
+    alert('Your confidential report has been securely transmitted to the National Anti-Ragging Task Force. Immediate action is being initiated.');
+    closeAntiRaggingModal();
+    form.reset();
+}
+        // Support Form Submission
+        async function handleSupportSubmit(e) {
+    e.preventDefault();
+
+    const form = e.target;
+
+    try {
+        await fetch('http://localhost:3000/api/grievances', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: form.elements[0].value,
+                email: form.elements[1].value,
+                message: form.elements[2].value
+            })
+        });
+    } catch (err) {
+        console.error('Grievance backend sync error:', err);
+    }
+
+    alert('Your ticket has been received! Our support cell will get back to your college email within 24 hours.');
+    form.reset();
+}
+
+        // Chart.js Election Referendum Setup
+        const ctx = document.getElementById('electionChart').getContext('2d');
+        let electionChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Hostel & Mess Fee Regulation',
+                    '24/7 Library & Lab Access',
+                    'Zero-Cost Placement Training',
+                    'Mental Health Support Cells'
+                ],
+                datasets: [{
+                    data: [1420, 980, 1150, 890],
+                    backgroundColor: [
+                        '#00B8FF',
+                        '#0077B6',
+                        '#90E0EF',
+                        '#03045E'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#B8C7D9',
+                            font: { size: 11, family: 'Inter' },
+                            boxWidth: 12
+                        }
+                    }
+                }
+            }
+        });
+
+        // Handle Voting
+       async function handleVote(e) {
+    e.preventDefault();
+
+    const option = document.getElementById('voteOption').value;
+    const voterId = document.getElementById('voterId').value;
+    const msg = document.getElementById('voteMessage');
+
+    try {
+        await fetch('http://localhost:3000/api/votes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                voter_id: voterId,
+                reform_option: option
+            })
+        });
+    } catch (err) {
+        console.error('Voting backend sync error:', err);
+    }
+
+    // Update chart data dynamically
+    if(option.includes('Hostel')) electionChart.data.datasets[0].data[0] += 1;
+    else if(option.includes('Library')) electionChart.data.datasets[0].data[1] += 1;
+    else if(option.includes('Placement')) electionChart.data.datasets[0].data[2] += 1;
+    else electionChart.data.datasets[0].data[3] += 1;
+    
+    electionChart.update();
+
+    msg.classList.remove('hidden', 'text-red-400');
+    msg.classList.add('text-electricBlue');
+    msg.innerText = `Success! Vote registered for "${option}" (ID: ${voterId}). Thank you for participating!`;
+    e.target.reset();
+}
+        // Generate Digital ID (jsPDF)
+       async function generateDigitalID(e) {
+            e.preventDefault();
+            const name = document.getElementById('memberName').value;
+            const college = document.getElementById('memberCollege').value;
+            const state = document.getElementById('memberState').value;
+            const course = document.getElementById('memberCourse').value;
+            const idNumber = 'YVP-2026-' + Math.floor(1000 + Math.random() * 9000);
+try {
+    await fetch('http://localhost:3000/api/members', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            full_name: document.getElementById('memberName').value,
+            college: document.getElementById('memberCollege').value,
+            state: document.getElementById('memberState').value,
+            course: document.getElementById('memberCourse').value,
+            membership_id: idNumber
+        })
+    });
+} catch (err) {
+    console.error('Backend sync error:', err);
+}
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: [85, 130] });
+
+            // Background Card Design
+            doc.setFillColor(7, 26, 43);
+            doc.rect(0, 0, 85, 130, 'F');
+
+            // Header Banner
+            doc.setFillColor(0, 184, 255);
+            doc.rect(0, 0, 85, 22, 'F');
+
+            doc.setTextColor(7, 26, 43);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(12);
+            doc.text("YOUTH VOICE PARTY (YVP)", 42.5, 10, { align: 'center' });
+
+            doc.setFontSize(8);
+            doc.text("PAN-INDIA STUDENT MOVEMENT", 42.5, 16, { align: 'center' });
+
+            // Member Photo Placeholder Box
+            doc.setFillColor(13, 41, 66);
+            doc.setDrawColor(0, 184, 255);
+            doc.roundedRect(27.5, 28, 30, 35, 3, 3, 'FD');
+
+            doc.setTextColor(184, 199, 217);
+            doc.setFontSize(7);
+            doc.text("VERIFIED", 42.5, 47, { align: 'center' });
+
+            // Details
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(13);
+            doc.setFont("helvetica", "bold");
+            doc.text(name, 42.5, 71, { align: 'center' });
+
+            doc.setTextColor(0, 184, 255);
+            doc.setFontSize(9);
+            doc.text("OFFICIAL MEMBER", 42.5, 77, { align: 'center' });
+
+            doc.setTextColor(184, 199, 217);
+            doc.setFontSize(8);
+            doc.setFont("helvetica", "normal");
+            doc.text(`College: ${college}`, 10, 90);
+            doc.text(`Course: ${course}`, 10, 97);
+            doc.text(`State: ${state}`, 10, 104);
+
+            doc.setFillColor(0, 184, 255, 0.2);
+            doc.roundedRect(10, 110, 65, 12, 2, 2, 'F');
+
+            doc.setTextColor(0, 184, 255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(9);
+            doc.text(`ID No: ${idNumber}`, 42.5, 117, { align: 'center' });
+
+            doc.save(`YVP_Digital_ID_${name.replace(/\s+/g, '_')}.pdf`);
+            alert('Your official YVP Digital Membership ID has been successfully generated and downloaded!');
+            e.target.reset();
+        }
+
+        // Animated Counters on Scroll
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const targetPos = document.getElementById('home').offsetTop + 300;
+            if(scrollPos >= targetPos && !animated) {
+                animated = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 40;
+                    const updateCount = () => {
+                        count += speed;
+                        if(count < target) {
+                            counter.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 25);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
