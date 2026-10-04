@@ -1060,7 +1060,7 @@
     const form = e.target;
 
     try {
-        await fetch('http://localhost:3000/api/pillar-suggestions', {
+        await fetch('/api/pillar-suggestions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1119,7 +1119,7 @@
     const form = e.target;
 
     try {
-        await fetch('http://localhost:3000/api/anti-ragging', {
+        await fetch('/api/anti-ragging', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1145,7 +1145,7 @@
     const form = e.target;
 
     try {
-        await fetch('http://localhost:3000/api/grievances', {
+        await fetch('/api/grievances', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1211,7 +1211,7 @@
     const msg = document.getElementById('voteMessage');
 
     try {
-        await fetch('http://localhost:3000/api/votes', {
+        await fetch('/api/votes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1247,7 +1247,7 @@
             const course = document.getElementById('memberCourse').value;
             const idNumber = 'YVP-2026-' + Math.floor(1000 + Math.random() * 9000);
 try {
-    await fetch('http://localhost:3000/api/members', {
+    await fetch('/api/members', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
